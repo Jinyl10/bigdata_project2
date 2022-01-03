@@ -58,7 +58,6 @@ function edit(){
 }
 </script>
 </head>
-<body bgcolor="yellow">
 
 <h3>Contact Form</h3>
 
@@ -68,7 +67,7 @@ function edit(){
     <input type="text" 	name="title" 			value="<%=review.getReview_title()%>">
     <input type="text" 	name="writer" 		value="<%=review.getMember_id()%>">
     <textarea 					name="content" 		style="height:200px"><%=review.getReview_content() %></textarea>
-    <input type="button" value="목록" onClick="location.href='/review/list'">
+    <input type="button" value="목록" onClick="location.href='/review/listReview'">
     <input type="button" value="수정" onClick="edit()">
     <input type="button" value="삭제" onClick="del()">
   </form>

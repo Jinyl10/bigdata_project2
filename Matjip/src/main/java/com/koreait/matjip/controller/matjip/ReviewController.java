@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -26,17 +28,30 @@ public class ReviewController {
 	private Pager pager;
 	
 	//listDetail
-	@RequestMapping(value="/review/listReview", method=RequestMethod.GET)
-	public ModelAndView getList(HttpServletRequest request) {
-		// 3단계
+	@GetMapping("/review/listReview")
+	public String getList(HttpServletRequest request, Model model) {
 		List reviewList = reviewService.selectAll();
-		// 4단계
-		ModelAndView mav = new ModelAndView("review/listReview");
-		mav.addObject("reviewList", reviewList);
 		pager.init(reviewList, request);
-		mav.addObject("pager", pager);
-		return mav;
+		
+		model.addAttribute("reviewList", reviewList);
+		model.addAttribute("pager", pager);
+		
+		return "/review/listReview";
 	}
+	
+//	notice	
+//	@RequestMapping(value="/review/listReview", method=RequestMethod.GET)
+//	public ModelAndView getList(HttpServletRequest request) {
+//		// 3단계
+//		List reviewList = reviewService.selectAll();
+//		
+//		// 4단계
+//		ModelAndView mav = new ModelAndView("review/listReview");
+//		mav.addObject("reviewList", reviewList);
+//		pager.init(reviewList, request);
+//		mav.addObject("pager", pager);
+//		return mav;
+//	}
 	
 	//writeReview
 	@RequestMapping(value="/review/writeReview")

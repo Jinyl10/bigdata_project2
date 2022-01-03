@@ -54,7 +54,7 @@ function writeForm(){
 		<tr>
 			<td><%=num-- %></td>
 			<td><img src="/resources/data/<%=review.getFilename()%>" width="40px"></td>
-			<td><a href="/review/detail?review_id=<%=review.getReview_id()%>"><%=review.getReview_title() %></a></td>
+			<td><a href="/review/detailReview?review_id=<%=review.getReview_id()%>"><%=review.getReview_title() %></a></td>
 			<td><%=review.getMember_id() %></td>
 			<td><%=review.getReview_regdate() %></td>
 			<td><%=review.getHit() %></td>
@@ -70,7 +70,7 @@ function writeForm(){
 		</tr>
 		<tr>
 			<td colspan="6">
-				<button onClick="writeForm()">글등록</button>
+				<button onClick="location.href='writeReview'">글등록</button>
 			</td>
 		</tr>
 	</table>
