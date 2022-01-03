@@ -4,7 +4,7 @@
 	
 	<!-- 공통쿼리 -->
 	<sql id="selectCommon">
-		select review_id, restrt_id, member_id, review_title, review_content, review_regdate, hit, filename from review
+		select review_id, restrt_id, member_id, review_title, review_content, review_regdate, filename from review
 	</sql>
 	
 	<!-- listReview -->
@@ -25,10 +25,9 @@
 		values(#{review_id}, #{restrt_id}, #{member_id}, #{review_title}, #{review_content}, #{filename})
 	</insert>
 		
-	<!-- update  -->
+	<!-- update ; filename=#{filename} -->
 	<update id="update" parameterType="Review">
-		update review set review_title=#{review_title}, review_content=#{review_content}, filename=#{filename}
-		where review_id=#{review_id}
+		update review set review_title=#{review_title}, review_content=#{review_content} where review_id=#{review_id}
 	</update>
 	
 	<!-- delete  -->

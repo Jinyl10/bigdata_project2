@@ -63,10 +63,10 @@ function edit(){
 
 <div class="container">
   <form name="form1">
-  	<input type="hidden" name="review_id" value="<%=review.getReview_id()%>">
-    <input type="text" 	name="title" 			value="<%=review.getReview_title()%>">
-    <input type="text" 	name="writer" 		value="<%=review.getMember_id()%>">
-    <textarea 					name="content" 		style="height:200px"><%=review.getReview_content() %></textarea>
+    <input type="hidden"  	name="review_id" 		value="<%=review.getReview_id()%>">
+    <input type="text"  		name="review_title" 		value="<%=review.getReview_title()%>">
+    <textarea						name="review_content"   style="height:200px"><%=review.getReview_content()%></textarea>
+    
     <input type="button" value="목록" onClick="location.href='/review/listReview'">
     <input type="button" value="수정" onClick="edit()">
     <input type="button" value="삭제" onClick="del()">

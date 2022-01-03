@@ -37,14 +37,20 @@ function writeForm(){
 </head>
 <body>
 
+	<!-- 보완; 디자인....
+	detailStore에서 넘어와서 가게 번호는 동일; but foreign..
+	로그인해야 글 작성 활성화
+	member_id  == session.login_id; 수정, 삭제 활성화
+	 -->
+
 	<table>
 		<tr>
 			<th>No</th>
+			<th>가게 번호</th>
 			<th>이미지</th>
 			<th>제목</th>
 			<th>작성자</th>
 			<th>등록일</th>
-			<th>조회수</th>
 		</tr>
 		<%int curPos=pager.getCurPos(); %>
 		<%int num=pager.getNum(); %>
@@ -53,11 +59,11 @@ function writeForm(){
 		<%Review review=reviewList.get(curPos++); %>
 		<tr>
 			<td><%=num-- %></td>
+			<td><%=review.getRestrt_id() %></td>
 			<td><img src="/resources/data/<%=review.getFilename()%>" width="40px"></td>
 			<td><a href="/review/detailReview?review_id=<%=review.getReview_id()%>"><%=review.getReview_title() %></a></td>
 			<td><%=review.getMember_id() %></td>
 			<td><%=review.getReview_regdate() %></td>
-			<td><%=review.getHit() %></td>
 		</tr>
 		<%} %>
 		<tr>
@@ -70,7 +76,7 @@ function writeForm(){
 		</tr>
 		<tr>
 			<td colspan="6">
-				<button onClick="location.href='writeReview'">글등록</button>
+				<button onClick="location.href='write'">글등록</button>
 			</td>
 		</tr>
 	</table>
