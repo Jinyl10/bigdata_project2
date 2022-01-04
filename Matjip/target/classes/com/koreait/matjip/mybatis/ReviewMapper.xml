@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Review">	<!-- config; alias -->
+	
+	<!-- 공통쿼리 -->
+	<sql id="selectCommon">
+		select review_id, restrt_id, member_id, review_title, review_content, review_regdate, filename from review
+	</sql>
+	
+	<!-- listReview -->
+	<select id="selectAll" resultType="Review">
+		<include refid="selectCommon"/>
+		order by review_id desc
+	</select>
+	
+	<!-- detailReview -->
+	<select id="select" resultType="Review">
+		<include refid="selectCommon"/>
+		where review_id=#{review_id}
+	</select>
+	
+	<!-- insert  -->
+	<insert id="insert" parameterType="Review">
+		insert into review(review_id, restrt_id, member_id, review_title, review_content, filename)
+		values(#{review_id}, #{restrt_id}, #{member_id}, #{review_title}, #{review_content}, #{filename})
+	</insert>
+		
+	<!-- update ; filename=#{filename} -->
+	<update id="update" parameterType="Review">
+		update review set review_title=#{review_title}, review_content=#{review_content} where review_id=#{review_id}
+	</update>
+	
+	<!-- delete  -->
+	<delete id="delete" parameterType="int">
+		delete from review where review_id=#{review_id} 
+	</delete>
+		
+</mapper>
+
+
