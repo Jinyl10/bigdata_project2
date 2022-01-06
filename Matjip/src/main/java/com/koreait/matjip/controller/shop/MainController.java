@@ -1,4 +1,4 @@
-package com.koreait.matjip.controller.matjip;
+package com.koreait.matjip.controller.shop;
 
 import java.util.List;
 
@@ -21,6 +21,14 @@ public class MainController {
 //	@Autowired
 //	private CategoryService categoryService;
 	
+	//테스트용 반드시 지울 것!!!!!!
+	@RequestMapping(value="/searchStore", method=RequestMethod.GET)
+	public ModelAndView getStore() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("shop/restrt/searchRestrt");
+		
+		return mav;
+	}
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView getMain() {
@@ -29,7 +37,7 @@ public class MainController {
 		ModelAndView mav = new ModelAndView();
 		//mav.addObject("categoryList", categoryList);
 		
-		mav.setViewName("matjip/index");
+		mav.setViewName("shop/index");
 		
 		return mav;
 	}

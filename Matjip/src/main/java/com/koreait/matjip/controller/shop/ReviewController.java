@@ -1,4 +1,4 @@
-package com.koreait.matjip.controller.matjip;
+package com.koreait.matjip.controller.shop;
 
 import java.util.List;
 
@@ -41,7 +41,7 @@ public class ReviewController {
 		model.addAttribute("reviewList", reviewList);
 		model.addAttribute("pager", pager);
 		
-		return "/review/listReview";
+		return "shop/review/listReview";
 	}
 	
 //	notice	
@@ -61,7 +61,7 @@ public class ReviewController {
 	//writeReview
 	@RequestMapping(value="/review/write")
 	public String writeForm() {
-		return "/review/write";
+		return "shop/review/write";
 	}
 	
 	//regist
@@ -76,7 +76,7 @@ public class ReviewController {
 	}
 	
 	//업로드 테스트
-		@RequestMapping(value="/notice/upload", method=RequestMethod.POST)
+		@RequestMapping(value="/review/upload", method=RequestMethod.POST)
 		public String uploadTest(HttpServletRequest request, Review review) {
 			return null;
 		}	
@@ -88,7 +88,7 @@ public class ReviewController {
 		Review review = reviewService.select(review_id);	
 		
 		// 4단계: 저장
-		ModelAndView mav = new ModelAndView("review/detailReview"); //setViewName
+		ModelAndView mav = new ModelAndView("shop/review/detailReview"); //setViewName
 		mav.addObject("review", review);
 		
 		return mav;
