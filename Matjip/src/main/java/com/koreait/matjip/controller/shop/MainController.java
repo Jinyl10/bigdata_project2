@@ -20,15 +20,7 @@ public class MainController {
 //	
 //	@Autowired
 //	private CategoryService categoryService;
-	
-	//테스트용 반드시 지울 것!!!!!!
-	@RequestMapping(value="/searchStore", method=RequestMethod.GET)
-	public ModelAndView getStore() {
-		ModelAndView mav = new ModelAndView();
-		mav.setViewName("shop/restrt/searchRestrt");
-		
-		return mav;
-	}
+
 	
 	@RequestMapping(value="/", method=RequestMethod.GET)
 	public ModelAndView getMain() {

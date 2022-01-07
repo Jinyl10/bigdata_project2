@@ -32,7 +32,7 @@ public class ReviewController {
 	@Autowired
 	private Pager pager;
 	
-	//listDetail
+	//listReview
 	@GetMapping("/review/listReview")
 	public String getList(HttpServletRequest request, Model model) {
 		List reviewList = reviewService.selectAll();

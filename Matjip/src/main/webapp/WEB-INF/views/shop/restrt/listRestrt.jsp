@@ -1,17 +1,24 @@
-<%-- <%@page import="com.koreait.matjip.util.Pager"%>
-<%@page import="com.koreait.matjip.domain.Review"%>
-<%@page import="java.util.List"%> --%>
+<%-- <%@page import="com.koreait.matjip.util.Pager"%> --%>
+<%@page import="com.koreait.matjip.domain.Shop"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-//	List<Review> reviewList =(List)request.getAttribute("reviewList");
-//Pager pager = (Pager) request.getAttribute("pager");
+//	List<Shop> shopList =(List)request.getAttribute("shopList");
+//	Pager pager = (Pager) request.getAttribute("pager");
 %>
+
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <style>
 table {
 	border-collapse: collapse;
 	width: 100%;
 	border: 1px solid #ddd;
 }
+
 th, td {
 	text-align: left;
 	padding: 16px;
@@ -19,53 +26,76 @@ th, td {
 
 /* th{background-color:#eee}
  tr:hover {background-color: #eee} */
- 
- table:hover tbody tr:hover td{
- background: #eee;
- color: black;
- }
+table:hover tbody tr:hover td {
+	background: #eee;
+	color: black;
+}
+
+.pagination {
+	margin: auto;
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	margin-left:-60px;
+	padding: 10px
+}
+
+.pagination a {
+	border-radius: 5px;
+	color: black;
+	float: center;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	text-align: center;
+}
+
+.pagination a.active {
+	background-color: #ddd;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
 </style>
 </head>
 <body>
-
 	<div>
 		<table>
 			<thead>
-			<tr>
-				<th>No</th>
-				<th>가게명</th>
-				<th>대표 음식</th>
-				<th>리뷰 수</th>
-			</tr>
+				<tr>
+					<th>No</th>
+					<th>시군 아이디</th>
+					<th>카테고리 아이디</th>
+					<th>음식점 명</th>
+					<th>주소</th>
+				</tr>
 			</thead>
-			<tbody>
+<%-- 			<% Shop shop = restrtList.get %>
 			<tr>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
-				<td>1</td>
+				<td><%=num--%</td>
+				<td><%=shop.getSigun_id()%></td>
+				<td><%=shop.getCategory_id()%></td>
+				<td><%=shop.getRESTRT_NM()%></td>
+				<td><%=shop.getREFINE_ROADNM_ADDR()%></td>
 			</tr>
-			<tr>
-				<td>2</td>
-				<td>2</td>
-				<td>2</td>
-				<td>2</td>
-			</tr>
-			<tr>
-				<td>3</td>
-				<td>3</td>
-				<td>3</td>
-				<td>3</td>
-			</tr>
-			<tr>
-				<td>4</td>
-				<td>4</td>
-				<td>4</td>
-				<td>4</td>
-			</tr>
-			</tbody>
 		</table>
-	</div>
+	</div> --%>
+	
+<%-- 	<div class="pagination" style="paddiing-top:30px">
+			<a>&laquo;</a>
+			<%
+				for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) {
+			%>
+			<%
+				if (i > pager.getTotalPage())
+					break;
+			%>
+			<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/restrt/listRestrt?currentPage=<%=i%>"><%=i%></a>
+			<%} %>
+			<a>&raquo;</a>
+		</div> --%>
 
 
 </body>

@@ -1,4 +1,3 @@
-
 <%@page import="com.koreait.matjip.util.Pager"%>
 <%@page import="com.koreait.matjip.domain.Review"%>
 <%@page import="java.util.List"%>
@@ -11,7 +10,6 @@ Pager pager = (Pager) request.getAttribute("pager");
 <!DOCTYPE html>
 <html>
 <head>
-<!-- <meta name="viewport" content="width=device-width, initial-scale=1"> -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -114,22 +112,12 @@ pager 활성화?&부트스트랩(pagination; https://getbootstrap.com/docs/4.6/c
 				</tr>
 			</thead>
 
-			<%
-			int curPos = pager.getCurPos();
-			%>
-			<%
-			int num = pager.getNum();
-			%>
-			<%
-			for (int i = 1; i <= pager.getPageSize(); i++) {
-			%>
-			<%
-			if (num < 1)
-				break;
-			%>
-			<%
-			Review review = reviewList.get(curPos++);
-			%>
+			<% int curPos = pager.getCurPos(); %>
+			<% int num = pager.getNum(); %>
+			<% for (int i = 1; i <= pager.getPageSize(); i++) { %>
+			<% if (num < 1)
+				break; %>
+			<% Review review = reviewList.get(curPos++); %>
 
 			<tr>
 				<td><%=num--%></td>
@@ -142,26 +130,19 @@ pager 활성화?&부트스트랩(pagination; https://getbootstrap.com/docs/4.6/c
 				<td><%=review.getReview_regdate()%></td>
 			</tr>
 
-			<%
-			}
-			%>
+			<% }%>
 
 		</table>
 	</div>
 	<div style="padding-top: 20px">
 	<div class="pagination" >
 			<a>&laquo;</a>
-			<%
-				for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) {
-			%>
-			<%
-				if (i > pager.getTotalPage())
+			<% for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) { %>
+			<% if (i > pager.getTotalPage())
 					break;
 			%>
 			<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/review/listReview?currentPage=<%=i%>"><%=i%></a>
-			<%
-				}
-			%>
+			<% } %>
 			<a>&raquo;</a>
 		</div>
 		<button class="button" onClick="location.href='write'" >리뷰 등록</button>

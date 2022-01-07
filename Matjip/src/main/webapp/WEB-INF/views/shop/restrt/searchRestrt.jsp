@@ -1,4 +1,12 @@
+<%@page import="com.koreait.matjip.util.Pager"%>
+<%@page import="com.koreait.matjip.domain.Shop"%>
+<%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
+
+<%
+List<Shop> shopList = (List) request.getAttribute("shopList");
+Pager pager = (Pager) request.getAttribute("pager");
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,57 +15,104 @@
 <title>맛집 찾기</title>
 <!-- style -->
 <%@ include file="../../shop/inc/head_link.jsp"%>
-<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">--><style>
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">-->
+<style>
 * {
-  box-sizing: border-box;
+	box-sizing: border-box;
 }
 
 /* Create a column layout with Flexbox */
 .row {
-  display: flex;
+	display: flex;
 }
 
 /* Left column (menu) */
 .left {
-  flex: 30%;
-  padding: 15px 0;
+	flex: 30%;
+	padding: 15px 0;
 }
 
 .left h2 {
-  padding-left: 8px;
+	padding-left: 8px;
 }
 
 /* Right column (page content) */
 .right {
-  flex: 70%;
-  padding: 15px;
+	flex: 70%;
+	padding: 15px;
 }
 
 /* Style the search box */
 #mySearch {
-  width: 100%;
-  font-size: 18px;
-  padding: 11px;
-  border: 1px solid #ddd;
+	width: 100%;
+	font-size: 18px;
+	padding: 11px;
+	border: 1px solid #ddd;
 }
 
 /* Style the navigation menu inside the left column */
 #myMenu {
-  list-style-type: none;
-  padding: 0;
-  margin: 0;
+	list-style-type: none;
+	padding: 0;
+	margin: 0;
 }
 
 #myMenu li a {
-  padding: 12px;
-  text-decoration: none;
-  color: black;
-  display: block
+	padding: 12px;
+	text-decoration: none;
+	color: black;
+	display: block
 }
 
 #myMenu li a:hover {
-  background-color: #eee;
+	background-color: #eee;
+}
 
+table {
+	border-collapse: collapse;
+	width: 100%;
+	border: 1px solid #ddd;
+}
+
+th, td {
+	text-align: left;
+	padding: 16px;
+}
+
+/* th{background-color:#eee}
+ tr:hover {background-color: #eee} */
+table:hover tbody tr:hover td {
+	background: #eee;
+	color: black;
+}
+
+.pagination {
+	margin: auto;
+	display: inline-block;
+	position: absolute;
+	left: 50%;
+	margin-left: -60px;
+	padding: 10px
+}
+
+.pagination a {
+	border-radius: 5px;
+	color: black;
+	float: center;
+	padding: 8px 16px;
+	text-decoration: none;
+	transition: background-color .3s;
+	text-align: center;
+}
+
+.pagination a.active {
+	background-color: #ddd;
+	color: white;
+}
+
+.pagination a:hover:not(.active) {
+	background-color: #ddd;
+}
 </style>
 </head>
 
@@ -74,7 +129,8 @@
 		<!-- main -->
 		<div class="main">
 			<div class="row">
-				<div class="left" ><!-- style="background-color: #bbb;" -->
+				<div class="left">
+					<!-- style="background-color: #bbb;" -->
 					<h2>맛집 검색</h2>
 					<input type="text" id="mySearch" onkeyup="myFunction()"
 						placeholder="Search.." title="Type in a category">
@@ -86,16 +142,53 @@
 					</ul>
 				</div>
 
-				<div class="right" ><!-- style="background-color: #ddd;" -->
+				<div class="right">
+					<!-- style="background-color: #ddd;" -->
 					<h2>검색 결과</h2>
-					<%@ include file="../../shop/restrt/listRestrt.jsp" %>
+					<table>
+						<thead>
+							<tr>
+								<th>No</th>
+								<th>시군 아이디</th>
+								<th>카테고리 아이디</th>
+								<th>음식점 명</th>
+								<th>주소</th>
+							</tr>
+						</thead>
+						<% int curPos = pager.getCurPos(); %>
+						<% int num = pager.getNum(); %>
+						<% for (int i = 1; i <= pager.getPageSize(); i++) { %>
+						<% if (num < 1)
+								break; %>
+						<% Shop shop = shopList.get(curPos++); %>
+						<tr>
+							<td><%=num--%></td>
+							<td><%=shop.getSigun_id()%></td>
+							<td><%=shop.getCategory_id()%></td>
+							<td><%=shop.getRESTRT_NM()%></td>
+							<td><%=shop.getREFINE_ROADNM_ADDR()%></td>
+						</tr>
+						<% } %>
+					</table>
+					<div class="pagination" style="paddiing-top: 30px">
+						<a>&laquo;</a>
+						<%
+							for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) {
+						%>
+						<% if (i > pager.getTotalPage())
+							break; %>
+						<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>"
+							aria-current="page" href="/restrt/listRestrt?currentPage=<%=i%>"><%=i%></a>
+						<%} %>
+						<a>&raquo;</a>
+					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
-	
-<!-- <script>
+
+	<!-- <script>
 function myFunction() {
   var input, filter, ul, li, a, i;
   input = document.getElementById("mySearch");
@@ -112,6 +205,6 @@ function myFunction() {
   }
 }
 </script> -->
-<%@ include file="../../shop/inc/footer.jsp"%>
+	<%@ include file="../../shop/inc/footer.jsp"%>
 </body>
 </html>
