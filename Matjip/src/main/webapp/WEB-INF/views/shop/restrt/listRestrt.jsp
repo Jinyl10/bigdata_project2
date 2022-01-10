@@ -1,11 +1,13 @@
 <%-- <%@page import="com.koreait.matjip.util.Pager"%> --%>
-<%@page import="com.koreait.matjip.domain.Shop"%>
+<%@page import="com.koreait.matjip.domain.Restrt"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 <%
-//	List<Shop> shopList =(List)request.getAttribute("shopList");
+//	List<Restrt> restrtList =(List)request.getAttribute("restrtList");
 //	Pager pager = (Pager) request.getAttribute("pager");
 %>
+
+<!-- search 코드 완성 후 여기에 복사할 예정!;  -->
 
 <!DOCTYPE html>
 <html>

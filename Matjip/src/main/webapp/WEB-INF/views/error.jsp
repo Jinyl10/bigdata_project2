@@ -6,7 +6,7 @@
 <title>Insert title here</title>
 </head>
 <body bgcolor="white">
-이용에 불편을 드려 죄송합니다.<p>
+<p> 이용에 불편을 드려 죄송합니다.
 <%
 	RuntimeException e= (RuntimeException)request.getAttribute("e");
 	out.print(e.getMessage());

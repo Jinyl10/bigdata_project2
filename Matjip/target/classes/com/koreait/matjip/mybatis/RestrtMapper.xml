@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Restrt">	<!-- config; alias -->
+	
+	<!-- 공통쿼리 -->
+	<sql id="selectCommon">
+		select restrt_id, sigun_id, category_id, RESTRT_NM, REFINE_ROADNM_ADDR from restrt
+	</sql>
+	
+	<!-- listRestrt -->
+	<select id="selectAll" resultType="Restrt">
+		<include refid="selectCommon"/>
+		order by restrt_id desc
+	</select>
+	
+	<!-- detailRestrt -->
+	<select id="select" resultType="Restrt">
+		<include refid="selectCommon"/>
+		where restrt_id=#{restrt_id}
+	</select>
+	
+	<!-- insert  -->
+	<insert id="insert" parameterType="Restrt">
+		insert int restrt(restrt_id, sigun_id, category_id, RESTRT_NM, REFINE_ROADNM_ADDR)
+		values(#{restrt_id}, #{sigun_id}, #{category_id}, #{RESTRT_NM}, #{REFINE_ROADNM_ADDR})
+	</insert>
+		
+	<!-- update -->
+	<update id="update" parameterType="Restrt">
+		update restrt set RESTRT_NM=#{RESTRT_NM}, REFINE_ROADNM_ADDR=#{REFINE_ROADNM_ADDR} where restrt_id=#{restrt_id}
+	</update>
+	
+	<!-- delete  -->
+	<delete id="delete" parameterType="int">
+		delete from restrt where restrt_id=#{restrt_id} 
+	</delete>
+		
+</mapper>
+
+

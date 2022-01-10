@@ -23,6 +23,8 @@ import com.koreait.matjip.util.Pager;
 @Controller
 public class ReviewController {
 	
+	//리뷰는 모두 로그인 필요한 서비스; request 필요함!
+	
 	@Autowired
 	private FileManager fileManager;
 	
@@ -43,21 +45,7 @@ public class ReviewController {
 		
 		return "shop/review/listReview";
 	}
-	
-//	notice	
-//	@RequestMapping(value="/review/listReview", method=RequestMethod.GET)
-//	public ModelAndView getList(HttpServletRequest request) {
-//		// 3단계
-//		List reviewList = reviewService.selectAll();
-//		
-//		// 4단계
-//		ModelAndView mav = new ModelAndView("review/listReview");
-//		mav.addObject("reviewList", reviewList);
-//		pager.init(reviewList, request);
-//		mav.addObject("pager", pager);
-//		return mav;
-//	}
-	
+		
 	//writeReview
 	@RequestMapping(value="/review/write")
 	public String writeForm() {
@@ -96,7 +84,7 @@ public class ReviewController {
 	
 	//update
 	@RequestMapping(value="/review/update", method=RequestMethod.POST)
-	public ModelAndView update(Review review) {
+	public ModelAndView update(HttpServletRequest request,Review review) {
 		reviewService.update(review);
 		ModelAndView mav = new ModelAndView("redirect:/review/detailReview?review_id="+review.getReview_id());
 		return mav;
@@ -104,7 +92,7 @@ public class ReviewController {
 	
 	//delete
 	@RequestMapping(value="/review/delete", method=RequestMethod.GET)
-	public String delete(int review_id) {
+	public String delete(HttpServletRequest request, int review_id) {
 		reviewService.delete(review_id);
 		
 		return "redirect:/review/listReview";

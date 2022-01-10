@@ -1,11 +1,11 @@
 <%@page import="com.koreait.matjip.util.Pager"%>
-<%@page import="com.koreait.matjip.domain.Shop"%>
+<%@page import="com.koreait.matjip.domain.Restrt"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%
-List<Shop> shopList = (List) request.getAttribute("shopList");
-Pager pager = (Pager) request.getAttribute("pager");
+List<Restrt> restrtList = (List) request.getAttribute("restrtList");
+//Pager pager = (Pager) request.getAttribute("pager");
 %>
 <!DOCTYPE html>
 <html>
@@ -86,32 +86,16 @@ table:hover tbody tr:hover td {
 	color: black;
 }
 
-.pagination {
-	margin: auto;
-	display: inline-block;
-	position: absolute;
-	left: 50%;
-	margin-left: -60px;
-	padding: 10px
+.progress-container {
+  width: 100%;
+  height: 8px;
+  background: #ccc;
 }
 
-.pagination a {
-	border-radius: 5px;
-	color: black;
-	float: center;
-	padding: 8px 16px;
-	text-decoration: none;
-	transition: background-color .3s;
-	text-align: center;
-}
-
-.pagination a.active {
-	background-color: #ddd;
-	color: white;
-}
-
-.pagination a:hover:not(.active) {
-	background-color: #ddd;
+.progress-bar {
+  height: 8px;
+  background: #04AA6D;
+  width: 0%;
 }
 </style>
 </head>
@@ -144,49 +128,61 @@ table:hover tbody tr:hover td {
 
 				<div class="right">
 					<!-- style="background-color: #ddd;" -->
-					<h2>검색 결과</h2>
-					<table>
-						<thead>
+					<h2>맛집 목록</h2>
+					<div class="progress-container">
+    					<div class="progress-bar" id="myBar"></div>
+  					</div> 
+  					<div class="contenct">
+						<table>
+							<thead>
+								<tr>
+									<th>No</th>
+									<th>시군 아이디</th>
+									<th>카테고리 아이디</th>
+									<th>음식점 명</th>
+									<th>주소</th>
+								</tr>
+							</thead>
+							
+							<%for(int i=0;i<restrtList.size();i++) { %>
+							
 							<tr>
-								<th>No</th>
-								<th>시군 아이디</th>
-								<th>카테고리 아이디</th>
-								<th>음식점 명</th>
-								<th>주소</th>
+								<td>test</td>
+								<td>test</td>
+								<td>test</td>
+								<td>test</td>
+								<td>test</td>
 							</tr>
-						</thead>
-						<% int curPos = pager.getCurPos(); %>
-						<% int num = pager.getNum(); %>
-						<% for (int i = 1; i <= pager.getPageSize(); i++) { %>
-						<% if (num < 1)
-								break; %>
-						<% Shop shop = shopList.get(curPos++); %>
-						<tr>
-							<td><%=num--%></td>
-							<td><%=shop.getSigun_id()%></td>
-							<td><%=shop.getCategory_id()%></td>
-							<td><%=shop.getRESTRT_NM()%></td>
-							<td><%=shop.getREFINE_ROADNM_ADDR()%></td>
-						</tr>
-						<% } %>
-					</table>
-					<div class="pagination" style="paddiing-top: 30px">
-						<a>&laquo;</a>
-						<%
-							for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) {
-						%>
-						<% if (i > pager.getTotalPage())
-							break; %>
-						<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>"
-							aria-current="page" href="/restrt/listRestrt?currentPage=<%=i%>"><%=i%></a>
-						<%} %>
-						<a>&raquo;</a>
+							
+<%--						<tr>
+								<td><%=restrtList.g %></td>
+								<td><%=restrt.getSigun_id()%></td>
+								<td><%=restrt.getCategory_id()%></td>
+								<td><%=restrt.getRESTRT_NM()%></td>
+								<td><%=restrt.getREFINE_ROADNM_ADDR()%></td>
+							</tr>	  --%>
+							<% } %>
+						</table>
 					</div>
 				</div>
 			</div>
 
 		</div>
+		<!-- main -->
 	</div>
+	<!-- row -->
+	
+	<script>
+// When the user scrolls the page, execute myFunction 
+window.onscroll = function() {myFunction()};
+
+function myFunction() {
+  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  var scrolled = (winScroll / height) * 100;
+  document.getElementById("myBar").style.width = scrolled + "%";
+}
+</script>
 
 	<!-- <script>
 function myFunction() {

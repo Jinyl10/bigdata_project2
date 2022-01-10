@@ -9,10 +9,10 @@
 
 	<div class="navbar">
 		<div class="navbar-right" style="float: right">
-			<a href="#">Login</a> 
-			<a href="#">Join</a> 
-			<a href="#">My Page</a> 
-			<a href="#">Manager</a>
+			<a href="/login/form">Login</a> 
+			<a href="/join/form">Join</a> 
+			<a href="/myPage">My Page</a> 
+			<a href="#admin">Manager</a>
 		</div>
 	</div>
 
