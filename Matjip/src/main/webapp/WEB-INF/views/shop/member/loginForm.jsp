@@ -57,7 +57,7 @@ $(function(){
 		loginCheck();
 	});
 });
-//비동기로 요청을 시도해보자!
+//RestController;
 function loginCheck(){
 	$.ajax({
 		url:"/login/check",

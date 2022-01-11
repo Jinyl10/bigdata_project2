@@ -47,16 +47,16 @@
 	
 	
 	<!-- aop 설정 -->
-<!--<beans:bean class="com.koreait.Matjip.aop.ShopMenuAspect" id="shopMenuAspect"/> -->
 	
-<!--<aop:config>
-		<aop:aspect id="categoryAspect" ref="shopMenuAspect"> -->
-			<!-- aspect가 관여될 수 있는 후보지점들을 가리켜 joinpoint 라 하고, 이 joinpoint 중 결정된 joinpoint 를 가리켜
-				pointcut이라 한다 -->
-<!--		<aop:pointcut expression="execution(public * com.koreait.shoppingmall.controller.shop..*(..))" id="categoryCut"/>
+<!--<beans:bean class="com.koreait.Matjip.aop.ShopMenuAspect" id="shopMenuAspect"/>
+	
+	<aop:config>
+		<aop:aspect id="categoryAspect" ref="shopMenuAspect">-->
+			<!-- aspect가 관여될 수 있는 후보지점들을 가리켜 joinpoint 라 하고, 이 joinpoint 중 결정된 joinpoint 를 가리켜 pointcut이라 한다 -->
+<!--	<aop:pointcut expression="execution(public * com.koreait.matjip.controller.shop..*(..))" id="categoryCut"/>
 			<aop:around method="getCategoryList" pointcut-ref="categoryCut"/>
 		</aop:aspect>
-	</aop:config> -->	
+	</aop:config>	-->
 	
 	<!-- 파일 업로드를 위한 빈 등록 -->
 	<beans:bean class="org.springframework.web.multipart.commons.CommonsMultipartResolver" 

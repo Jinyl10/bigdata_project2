@@ -21,13 +21,14 @@ public class RestrtController {
 	@Autowired
 	private RestrtService restrtService;
 	
-	//@Autowired
-	//private Pager pager;
+	@Autowired
+	private Pager pager;
 	
 	@GetMapping("/searchRestrt")
 	public String getlistRestrt(Model model) {
 		List restrtList = restrtService.selectAll();
-		//pager.init(restrtList);
+		
+//		pager.init(restrtList);
 		
 		model.addAttribute("restrtList", restrtList);
 		//model.addAttribute("pager", pager);

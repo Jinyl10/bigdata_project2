@@ -59,6 +59,9 @@ public class RestMemberController {
 	//회원가입 체크
 	@PostMapping("/join/regist")
 	public ResponseEntity<Message> insert(Member member) {
+		String password = hashBuilder.convertStringToHash(member.getPassword());
+		member.setPassword(password);
+		
 		memberService.insert(member);
 		
 		Message message = new Message();
@@ -113,21 +116,14 @@ public class RestMemberController {
 		
 		return entity;
 	}
-	
-	// 마이페이지 요청; selectOne
-	@GetMapping("/myPage")
-	public String mypage(HttpServletRequest request) {
-		
-		
-		return "redirect:/shop/member/loginForm";
-	}
-	
+
+//		마이페이지 관련!	
 //		@RequestMapping(value="/myPage", method=RequestMethod.GET)
 //		public ModelAndView mypage(HttpServletRequest request, Member member) {
 //			HttpSession session = request.getSession();
-//			
-//			
 //		}
+	
+	
 	
 	@ExceptionHandler(MemberException.class)
 	public ResponseEntity<Message> handle(HttpServletRequest request, MemberException e) {

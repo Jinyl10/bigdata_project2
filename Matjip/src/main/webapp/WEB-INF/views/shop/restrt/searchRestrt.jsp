@@ -144,24 +144,26 @@ table:hover tbody tr:hover td {
 								</tr>
 							</thead>
 							
-							<%for(int i=0;i<restrtList.size();i++) { %>
-							
-							<tr>
-								<td>test</td>
-								<td>test</td>
-								<td>test</td>
-								<td>test</td>
-								<td>test</td>
-							</tr>
-							
-<%--						<tr>
-								<td><%=restrtList.g %></td>
-								<td><%=restrt.getSigun_id()%></td>
-								<td><%=restrt.getCategory_id()%></td>
-								<td><%=restrt.getRESTRT_NM()%></td>
-								<td><%=restrt.getREFINE_ROADNM_ADDR()%></td>
-							</tr>	  --%>
-							<% } %>
+							<tbody>
+								<%for(int i=0;i<restrtList.size();i++) { %>
+								
+								<tr>
+									<td>test</td>
+									<td>test</td>
+									<td>test</td>
+									<td>test</td>
+									<td>test</td>
+								</tr>
+								
+	<%--						<tr>
+									<td><%=restrtList.g %></td>
+									<td><%=restrt.getSigun_id()%></td>
+									<td><%=restrt.getCategory_id()%></td>
+									<td><%=restrt.getRESTRT_NM()%></td>
+									<td><%=restrt.getREFINE_ROADNM_ADDR()%></td>
+								</tr>	  --%>
+								<% } %>
+							</tbody>
 						</table>
 					</div>
 				</div>

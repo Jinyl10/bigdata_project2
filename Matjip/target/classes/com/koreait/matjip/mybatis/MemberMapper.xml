@@ -2,10 +2,29 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Member">	<!-- config; alias -->
 	
-	<!-- 레코드 한 건 가져오기 -->
-	<select id="select" parameterType="Member" resultType="Member">
-		select * from member where member_id=#{member_id} and password=#{password}
+	<select id="selectAll" resultType="Member">
+		select * from member by member_id desc
 	</select>
+	
+	<!-- 한 건 가져오기 -->
+	<select id="select" parameterType="Member" resultType="Member">
+		select * from member where email=#{email} and password=#{password}
+	</select>
+	
+	<!-- 회원 가입 -->
+	<insert id="insert" parameterType="Member">
+		insert into member(email, password) values(#{email}, #{password}) 
+	</insert>
+	
+	<!-- 비번 수정 -->
+	<update id="update" parameterType="Member">
+		update member set password=#{password} where member_id=#{member_id}
+	</update>
+	
+	<!-- 회원 탈퇴 -->
+	<delete id="delete" parameterType="Member">
+		delete from member where member_id=#{member_id}
+	</delete>
 			
 </mapper>
 

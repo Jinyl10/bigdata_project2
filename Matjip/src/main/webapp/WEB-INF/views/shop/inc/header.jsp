@@ -9,8 +9,11 @@
 
 	<div class="navbar">
 		<div class="navbar-right" style="float: right">
+			<%-- <% session.getAttribute %> --%>
 			<a href="/login/form">Login</a> 
 			<a href="/join/form">Join</a> 
+			<% %>
+			<a href="/logout">Logout</a>
 			<a href="/myPage">My Page</a> 
 			<a href="#admin">Manager</a>
 		</div>

@@ -57,7 +57,7 @@ $(function(){
 		joinRegist();
 	});
 });
-//비동기로 요청..
+//RestController;
 function joinRegist(){
 	$.ajax({
 		url:"/join/regist",
@@ -91,7 +91,7 @@ function joinRegist(){
   
   <div class="input-container">
     <i class="fa fa-key icon"></i>
-    <input class="input-field" type="password" placeholder="비밀번호를 입력하세요" name="psw">
+    <input class="input-field" type="password" placeholder="비밀번호를 입력하세요" name="password">
   </div>
   
   <button type="button" class="btn">회원 등록</button>

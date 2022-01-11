@@ -26,13 +26,13 @@ public class MemberSessionCheckAspect {
 				request=(HttpServletRequest)args[i];
 			}
 		}
-		System.out.println("원래 호출하려던 컨트롤러와 메서드는 "+targetClass.getName()+","+method);
+		//System.out.println("원래 호출하려던 컨트롤러와 메서드는 "+targetClass.getName()+","+method);
 		
 		// 세션 체크하기
 		
 		String uri = request.getRequestURI();
 		
-		if( uri.equals("/login/form") || uri.equals("/login")) {
+		if( uri.equals("/login/form") || uri.equals("/login/check")) {
 			// 그냥 진행하도록함
 			result=joinPoint.proceed();
 		} else {	

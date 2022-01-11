@@ -26,11 +26,11 @@ import com.koreait.matjip.util.Message;
 @Controller
 public class MemberController {
 	
-	@Autowired
-	private MemberService memberService;
+//	@Autowired
+//	private MemberService memberService;
 	
-	@Autowired
-	private HashBuilder hashBuilder;
+//	@Autowired
+//	private HashBuilder hashBuilder;
 	
 	//로그인폼
 	@GetMapping("/login/form")
@@ -53,4 +53,10 @@ public class MemberController {
 		return "shop/member/joinForm";
 	}
 	
+	
+	// 마이페이지 요청; selectOne
+	@GetMapping("/myPage")
+	public String mypage(HttpServletRequest request) {	// ModelAndView ;회원 정보 수정, 탈퇴, 내가 쓴 리뷰, 내가 찜한 가게
+		return "shop/member/myPage";
+	}
 }

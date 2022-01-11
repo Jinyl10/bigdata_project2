@@ -16,7 +16,7 @@ public class MemberServiceImpl implements MemberService{
 	
 	@Override
 	public List selectAll() {
-		return null;
+		return memberDAO.selectAll();
 	}
 
 	@Override
@@ -26,17 +26,17 @@ public class MemberServiceImpl implements MemberService{
 
 	@Override
 	public void insert(Member member)  throws MemberException{
-		
+		memberDAO.insert(member);
 	}
 
 	@Override
 	public void update(Member member)  throws MemberException{
-		
+		memberDAO.update(member);
 	}
 
 	@Override
 	public void delete(Member member)  throws MemberException{
-		
+		memberDAO.delete(member);
 	}
 
 }
