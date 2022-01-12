@@ -115,6 +115,7 @@ table:hover tbody tr:hover td {
 					<h2>맛집 검색</h2>
 					<input type="text" id="mySearch" onkeyup="myFunction()"
 						placeholder="Search.." title="Type in a category">
+						
 					<ul id="myMenu">
 						<% for(Category category: categoryList) { %>
 							<li><a href="#"><%= category.getCategory_name() %></a></li>
@@ -160,7 +161,7 @@ table:hover tbody tr:hover td {
 							<% if (i > pager.getTotalPage())
 									break;
 							%>
-							<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/review/listReview?currentPage=<%=i%>"><%=i%></a>
+							<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/restrt/searchRestrt?currentPage=<%=i%>"><%=i%></a>
 							<% } %>
 						</div>
 					</div>
@@ -173,6 +174,17 @@ table:hover tbody tr:hover td {
 	</div>
 	<!-- row -->
 	
+<!-- <script>
+javascript:selCategory('
+%=category.getCategory_name() %>', 
+%=category.getCategory_id() %>)
+//select 컴포넌트에 선택한 카테고리 반영하기!!
+function selCategory(category_name, category_id){
+	var sel = document.querySelector("#category_id");
+	sel.options[0].text=category_name; //사용자가 보게될 옵션의 제목 	
+	sel.options[0].value=category_id; //사용자가 보게될 옵션의 값 	
+}	
+</script> -->
 
 <!-- <script>
 function myFunction() {

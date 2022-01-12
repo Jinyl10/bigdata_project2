@@ -38,9 +38,10 @@ public class RestrtController {
 	@GetMapping("/searchRestrt")
 	public String getlistRestrt(HttpServletRequest request, Model model) {
 		List restrtList = restrtService.selectAll();
-		List categoryList = categoryService.selectAll();
 		pager.init(restrtList, request);
 		
+		List categoryList = categoryService.selectAll();
+				
 		model.addAttribute("restrtList", restrtList);
 		model.addAttribute("categoryList", categoryList);
 		model.addAttribute("pager", pager);

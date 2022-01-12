@@ -60,6 +60,8 @@ public class RestMemberController {
 	
 	//여기서 부터 수정 필요...
 	
+	
+	
 	//회원가입 체크
 	@PostMapping("/join/regist")
 	public ResponseEntity<Message> insert(Member member) {

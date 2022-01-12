@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib  prefix="spring" uri="http://www.springframework.org/tags" %>     
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +23,8 @@ img {vertical-align: middle;}
 
 /* Slideshow container */
 .slideshow-container {
-  max-width: 1000px;
+  /* max-width: 1000px; */
+  width: 100%;
   position: relative;
   margin: auto;
 }
@@ -127,30 +129,29 @@ img {vertical-align: middle;}
 
 		<div class="main">
 			
-			<div class="slideshow-container">
-
+			<div class="slideshow-container" style="width:100%">
 				<div class="mySlides fade">
 				  <div class="numbertext">1 / 3</div>
-				  <img src="./images/s1.jpg" style="width:100%">
+				  <img src="<spring:url value='/resources/images/s1.jpg'/>" style="width:100%">
 				  <div class="text">Caption Text</div>
 				</div>
 				
 				<div class="mySlides fade">
 				  <div class="numbertext">2 / 3</div>
-				  <img src="./images/s2.jpg" style="width:100%">
+				  <img src="<spring:url value='/resources/images/s2.jpg'/>" style="width:100%">
 				  <div class="text">Caption Two</div>
 				</div>
 				
 				<div class="mySlides fade">
 				  <div class="numbertext">3 / 3</div>
-				  <img src="./images/s3.jpg" style="width:100%">
+				  <img src="<spring:url value='/resources/images/s3.jpg'/>" style="width:100%">
 				  <div class="text">Caption Three</div>
 				</div>
 				
 				<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
 				<a class="next" onclick="plusSlides(1)">&#10095;</a>
 				
-				</div>
+			</div>
 				<br>
 				
 				<div style="text-align:center">
@@ -158,16 +159,15 @@ img {vertical-align: middle;}
 				  <span class="dot" onclick="currentSlide(2)"></span> 
 				  <span class="dot" onclick="currentSlide(3)"></span> 
 				</div>
-			
 			<br>
-			<h2>TITLE HEADING</h2>
-			<h5>Title description, Sep 2, 2017</h5>
-			<div class="fakeimg" style="height: 200px;">Image</div>
+			<h2>0810-0113</h2>
+			<h5>수고하셨습니다!</h5>
 			<p>Some text..</p>
 			<p>Sunt in culpa qui officia deserunt mollit anim id est laborum
 				consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
 				labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-				exercitation ullamco.</p>
+				exercitation ullamco.
+			</p>
 		</div>
 	</div>
 	<!-- /main -->

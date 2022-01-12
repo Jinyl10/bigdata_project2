@@ -10,6 +10,7 @@ Pager pager = (Pager) request.getAttribute("pager");
 <!DOCTYPE html>
 <html>
 <head>
+<title>리뷰 리스트</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
@@ -17,6 +18,7 @@ Pager pager = (Pager) request.getAttribute("pager");
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
  -->
+<%@ include file="../../shop/inc/head_link.jsp"%>
 <style>
 table {
 	border-collapse: collapse;
@@ -88,65 +90,70 @@ table:hover tbody tr:hover td {
 
 </head>
 <body>
+	<!-- header -->
+	<%@ include file="../../shop/inc/header.jsp"%>
 
-	<!-- 보완; 디자인; 메인페이지 디자인에 맞추기
-detailStore에서 가게 번호 받아오기
-로그인해야 글 작성 활성화
-member_id  == session_id; 수정, 삭제 활성화
--->
-	<!-- 질문
-pager 활성화?&부트스트랩(pagination; https://getbootstrap.com/docs/4.6/components/pagination/)
- -->
-
-	<div>
-		<h2>리뷰 목록</h2>
-		<table>
-			<thead>
-				<tr>
-					<th>No</th>
-					<th>가게 번호</th>
-					<th>이미지</th>
-					<th>제목</th>
-					<th>작성자</th>
-					<th>등록일</th>
-				</tr>
-			</thead>
-
-			<% int curPos = pager.getCurPos(); %>
-			<% int num = pager.getNum(); %>
-			<% for (int i = 1; i <= pager.getPageSize(); i++) { %>
-			<% if (num < 1)
-				break; %>
-			<% Review review = reviewList.get(curPos++); %>
-
-			<tr>
-				<td><%=num--%></td>
-				<td><%=review.getRestrt().getRESTRT_NM() %></td>
-				<td><img src="/resources/data/<%=review.getFilename()%>"
-					width="40px"></td>
-				<td><a
-					href="/review/detailReview?review_id=<%=review.getReview_id()%>"><%=review.getReview_title()%></a></td>
-				<td><%=review.getMember().getMember_id() %></td>
-				<td><%=review.getReview_regdate()%></td>
-			</tr>
-
-			<% }%>
-
-		</table>
-	</div>
-	<div style="padding-top: 20px">
-	<div class="pagination" >
-			<a>&laquo;</a>
-			<% for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) { %>
-			<% if (i > pager.getTotalPage())
-					break;
-			%>
-			<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/review/listReview?currentPage=<%=i%>"><%=i%></a>
-			<% } %>
-			<a>&raquo;</a>
+	<div class="row">
+		<!-- sidebar_left -->
+		<div class="side">
+			<%@ include file="../../shop/inc/sidebar.jsp"%>
 		</div>
-		<button class="button" onClick="location.href='write'" >리뷰 등록</button>
-	</div>
 
+		<!-- main -->
+		<div class="main">
+			<div>
+				<h2>리뷰 목록</h2>
+				<table>
+					<thead>
+						<tr>
+							<th>No</th>
+							<th>가게 번호</th>
+							<th>이미지</th>
+							<th>제목</th>
+							<th>작성자</th>
+							<th>등록일</th>
+						</tr>
+					</thead>
+		
+					<% int curPos = pager.getCurPos(); %>
+					<% int num = pager.getNum(); %>
+					<% for (int i = 1; i <= pager.getPageSize(); i++) { %>
+					<% if (num < 1)
+						break; %>
+					<% Review review = reviewList.get(curPos++); %>
+		
+					<tr>
+						<td><%=num--%></td>
+						<td><%=review.getRestrt().getRESTRT_NM() %></td>
+						<td><img src="/resources/data/<%=review.getFilename()%>"
+							width="40px"></td>
+						<td><a
+							href="/review/detailReview?review_id=<%=review.getReview_id()%>"><%=review.getReview_title()%></a></td>
+						<td><%=review.getMember().getMember_id() %></td>
+						<td><%=review.getReview_regdate()%></td>
+					</tr>
+		
+					<% }%>
+		
+				</table>
+			</div>
+			<div style="padding-top: 20px">
+			<div class="pagination" >
+					<a>&laquo;</a>
+					<% for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) { %>
+					<% if (i > pager.getTotalPage())
+							break;
+					%>
+					<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/review/listReview?currentPage=<%=i%>"><%=i%></a>
+					<% } %>
+					<a>&raquo;</a>
+				</div>
+				<button class="button" onClick="location.href='write'" >리뷰 등록</button><!-- 'write' -->
+			</div>
+		</div>
+		<!-- main -->
+	</div>
+	<!-- row -->
+	<%@ include file="../../shop/inc/footer.jsp"%>
 </body>
 </html>

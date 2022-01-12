@@ -9,12 +9,14 @@
 	<div class="navbar">
 		<div class="navbar-right" style="float: right">
 			<%-- <% session.getAttribute %> --%>
-			<a href="/login/form">Login</a> 
-			<a href="/join/form">Join</a> 
-			<% %>
-			<a href="/logout">Logout</a>
-			<a href="/myPage">My Page</a> 
-			<a href="#admin">Manager</a>
+			<%if(session.getAttribute("member")!=null){ //로그인 한 사람만 ..%> 
+				<a href="/myPage">My Page</a>
+				<a href="/logout">Logout</a> 
+			<%}else{%>
+				<a href="/login/form">Login</a> 
+				<a href="/join/form">Join</a> 
+				
+		 <%} %>
 		</div>
 	</div>
 

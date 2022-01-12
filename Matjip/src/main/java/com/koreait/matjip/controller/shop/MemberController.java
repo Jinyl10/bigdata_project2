@@ -42,8 +42,7 @@ public class MemberController {
 	@Autowired
 	private JjimService jjimService;
 	
-	@Autowired
-	private Pager pager;
+	
 	
 	//로그인폼
 	@GetMapping("/login/form")
@@ -57,7 +56,7 @@ public class MemberController {
 		HttpSession session = request.getSession();
 		session.invalidate();	//세션을 무효화; 기존의 세션을 사용할 수 없게됨
 		
-		return "redirect:/shop/member/loginForm";
+		return "redirect:/main";
 	}
 	
 	// 회원 가입 폼 요청; session == null 일떄만!
@@ -70,17 +69,20 @@ public class MemberController {
 	
 	// 마이페이지 요청; selectOne
 	@GetMapping("/myPage")
-	public String mypage(HttpServletRequest request) {	// ModelAndView ;회원 정보 수정, 탈퇴, 내가 쓴 리뷰, 내가 찜한 가게
+	public String mypage(HttpServletRequest request) {	// ModelAndView ;회원 정보 수정, 탈퇴, 내가 쓴 리뷰, 내가 찜한 가게		
 		return "shop/member/myPage";
 	}
 	
 	// 내가 쓴 리뷰; member/myReview 
 	@GetMapping("/myReview")
 	public ModelAndView myReview(HttpServletRequest request, @RequestParam(name="member_id") int member_id) {
-		//HttpSession session = request.getSession();
+		HttpSession session = request.getSession();
+		Member member = (Member)session.getAttribute("member");
 		
-		List<Review> reviewList = reviewService.selectAllByMember(member_id);
+		List<Review> reviewList = reviewService.selectAllByMember(member.getMember_id());
 		ModelAndView mav = new ModelAndView("/member/myReview");
+		
+		Pager pager = (Pager)request.getAttribute("pager");
 		pager.init(reviewList, request);
 		mav.addObject("reviewList", reviewList);
 		mav.addObject("pager", pager);
@@ -88,6 +90,17 @@ public class MemberController {
 		return mav;	
 	}
 	
+	@ExceptionHandler(MemberException.class)
+	public ResponseEntity<Message> handle(HttpServletRequest request, MemberException e) {
+		Message message = new Message();
+		message.setMsg(e.getMessage());
+		message.setCode(0);
+		
+		ResponseEntity<Message> entity = new ResponseEntity<Message>(message, HttpStatus.OK);
+		
+		return entity;
+	}
+
 	
 
 	

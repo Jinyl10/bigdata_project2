@@ -8,7 +8,7 @@
 	
 	<!-- join; ReviewMember -->
 	<select id="selectId" parameterType="int" resultType="Member">
-		select * from member where member_=#{member_id}
+		select * from member where member_id=#{member_id}
 	</select>
 	
 	<!-- 한 건 가져오기 -->

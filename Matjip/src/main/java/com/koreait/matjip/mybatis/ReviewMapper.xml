@@ -4,13 +4,12 @@
 	
 	<resultMap type="Review" id="JoinReview">
 		<id column="review_id" 					property="review_id" />
-		<result column="member_id" 				property="member_id" />
 		<result column="review_title" 			property="review_title" />
 		<result column="review_content" 		property="review_content" />
 		<result column="review_regdate" 		property="review_regdate" />
 		<result column="filename" 				property="filename" />
 		<association column="restrt_id"			property="restrt" 	javaType="Restrt" 	select="Restrt.select" />
-		<association column="member_id"			property="member" 	javaType="Member" 	select="Member.select" />
+		<association column="member_id"			property="member" 	javaType="Member" 	select="Member.selectId" />
 	</resultMap>
 	
 	<!-- 공통쿼리 -->
@@ -24,7 +23,7 @@
 		member.member_id as member_id, email
 		from review, restrt, member
 		where restrt.restrt_id=review.restrt_id
-		and member.member_id=review.review_id
+		and member.member_id=review.member_id
 	</sql>
 	
 	<!-- list -->

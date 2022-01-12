@@ -3,12 +3,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>회원가입</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <!-- Add icon library -->
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<%@ include file="../../shop/inc/head_link.jsp"%>
 <style>
-body {font-family: Arial, Helvetica, sans-serif;}
-* {box-sizing: border-box;}
 
 .input-container {
   display: -ms-flexbox; /* IE10 */
@@ -19,7 +19,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 .icon {
   padding: 10px;
-  background: dodgerblue;
+  background: #228b22;
   color: white;
   min-width: 50px;
   text-align: center;
@@ -37,7 +37,7 @@ body {font-family: Arial, Helvetica, sans-serif;}
 
 /* Set a style for the submit button */
 .btn {
-  background-color: dodgerblue;
+  background-color: #228b22;
   color: white;
   padding: 15px 20px;
   border: none;
@@ -80,23 +80,39 @@ function joinRegist(){
 </head>
 <body>
 
-<form name="joinForm" style="max-width:500px;margin:auto">
-  <h2>회원가입</h2>
+<!-- header -->
+	<%@ include file="../../shop/inc/header.jsp"%>
 
+	<div class="row">
+		<!-- sidebar_left -->
+		<div class="side">
+			<%@ include file="../../shop/inc/sidebar.jsp"%>
+		</div>
 
-  <div class="input-container">
-    <i class="fa fa-envelope icon"></i>
-    <input class="input-field" type="text" placeholder="이메일을 입력하세요" name="email">
-  </div>
-  
-  <div class="input-container">
-    <i class="fa fa-key icon"></i>
-    <input class="input-field" type="password" placeholder="비밀번호를 입력하세요" name="password">
-  </div>
-  
-  <button type="button" class="btn">회원 등록</button>
-</form>
+		<div class="main" style="height:500px">
 
+			<form name="joinForm" style="margin:auto">
+			  <h2>회원가입</h2>
+			
+			
+			  <div class="input-container">
+			    <i class="fa fa-envelope icon"></i>
+			    <input class="input-field" type="text" placeholder="이메일을 입력하세요" name="email">
+			  </div>
+			  
+			  <div class="input-container">
+			    <i class="fa fa-key icon"></i>
+			    <input class="input-field" type="password" placeholder="비밀번호를 입력하세요" name="password">
+			  </div>
+			  
+			  <button type="button" class="btn">회원 등록</button>
+			</form>
+		</div>
+	<!-- /main -->
+	</div>
+	
+	<%@ include file="../../shop/inc/footer.jsp"%>
+	
 </body>
 </html>
     
