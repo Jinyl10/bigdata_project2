@@ -1,6 +1,8 @@
 package com.koreait.matjip.controller.shop;
 
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -19,7 +21,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.koreait.matjip.domain.Member;
 import com.koreait.matjip.exception.MemberException;
+import com.koreait.matjip.model.jjim.JjimService;
 import com.koreait.matjip.model.member.MemberService;
+import com.koreait.matjip.model.review.ReviewService;
 import com.koreait.matjip.util.HashBuilder;
 import com.koreait.matjip.util.Message;
 
@@ -117,12 +121,11 @@ public class RestMemberController {
 		return entity;
 	}
 
-//		마이페이지 관련!	
+//	마이페이지!!!!	
 //		@RequestMapping(value="/myPage", method=RequestMethod.GET)
 //		public ModelAndView mypage(HttpServletRequest request, Member member) {
 //			HttpSession session = request.getSession();
 //		}
-	
 	
 	
 	@ExceptionHandler(MemberException.class)

@@ -2,27 +2,58 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="Review">	<!-- config; alias -->
 	
+	<resultMap type="Review" id="JoinReview">
+		<id column="review_id" 					property="review_id" />
+		<result column="member_id" 				property="member_id" />
+		<result column="review_title" 			property="review_title" />
+		<result column="review_content" 		property="review_content" />
+		<result column="review_regdate" 		property="review_regdate" />
+		<result column="filename" 				property="filename" />
+		<association column="restrt_id"			property="restrt" 	javaType="Restrt" 	select="Restrt.select" />
+		<association column="member_id"			property="member" 	javaType="Member" 	select="Member.select" />
+	</resultMap>
+	
 	<!-- 공통쿼리 -->
-	<sql id="selectCommon">
+	<!-- <sql id="selectCommon">
 		select review_id, restrt_id, member_id, review_title, review_content, review_regdate, filename from review
+	</sql> -->
+	
+	<sql id="selectAllCommon">
+		select review_id, review_title, review_content, review_regdate, filename, 
+		restrt.restrt_id as restrt_id, RESTRT_NM, REFINE_ROADNM_ADDR,
+		member.member_id as member_id, email
+		from review, restrt, member
+		where restrt.restrt_id=review.restrt_id
+		and member.member_id=review.review_id
 	</sql>
 	
-	<!-- listReview -->
-	<select id="selectAll" resultType="Review">
-		<include refid="selectCommon"/>
+	<!-- list -->
+	<select id="selectAll" resultMap="JoinReview">
+		<include refid="selectAllCommon"/>
 		order by review_id desc
 	</select>
 	
-	<!-- detailReview -->
+	<!-- 가게별 리뷰 보기 -->
+	<select id="selectAllByRestrt" parameterType="int" resultMap="JoinReview">
+		<include refid="selectAllCommon" />
+		and review.restrt_id=#{restrt_id}
+	</select>
+	
+	<!-- 마이페이지 리뷰 보기 -->
+	<select id="selectAllByMember" parameterType="int" resultMap="JoinReview">
+		<include refid="selectAllCommon" />
+		and review.member_id=#{member_id}
+	</select>
+	
+	<!-- detail -->
 	<select id="select" resultType="Review">
-		<include refid="selectCommon"/>
-		where review_id=#{review_id}
+		select * from review where review_id=#{review_id}
 	</select>
 	
 	<!-- insert  -->
 	<insert id="insert" parameterType="Review">
 		insert into review(review_id, restrt_id, member_id, review_title, review_content, filename)
-		values(#{review_id}, #{restrt_id}, #{member_id}, #{review_title}, #{review_content}, #{filename})
+		values(#{review_id}, #{restrt.restrt_id}, #{member.member_id}, #{review_title}, #{review_content}, #{filename})
 	</insert>
 		
 	<!-- update ; filename=#{filename} -->

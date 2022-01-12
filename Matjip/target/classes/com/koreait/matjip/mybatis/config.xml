@@ -7,12 +7,16 @@
 		<typeAlias type="com.koreait.matjip.domain.Review" alias="Review"/>
 		<typeAlias type="com.koreait.matjip.domain.Restrt" alias="Restrt"/>
 		<typeAlias type="com.koreait.matjip.domain.Member" alias="Member"/>
+		<typeAlias type="com.koreait.matjip.domain.Jjim" alias="Jjim"/>
+		<typeAlias type="com.koreait.matjip.domain.Category" alias="Category"/>
 	</typeAliases>
 
 	<mappers>
 		<mapper resource="com/koreait/matjip/mybatis/ReviewMapper.xml"/>
 		<mapper resource="com/koreait/matjip/mybatis/RestrtMapper.xml"/>
 		<mapper resource="com/koreait/matjip/mybatis/MemberMapper.xml"/>
+		<mapper resource="com/koreait/matjip/mybatis/JjimMapper.xml"/>
+		<mapper resource="com/koreait/matjip/mybatis/CategoryMapper.xml"/>
 	</mappers>
 
 </configuration>

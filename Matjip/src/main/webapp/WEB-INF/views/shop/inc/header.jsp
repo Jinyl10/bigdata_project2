@@ -1,6 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
+<%@ page contentType="text/html; charset=UTF-8"%>
+ 
 	<div class="header">
 		<h1>
 			<a> 경 기 맛 집 발 전 진 흥 회</a>

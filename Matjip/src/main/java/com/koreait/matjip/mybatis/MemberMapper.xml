@@ -6,6 +6,11 @@
 		select * from member by member_id desc
 	</select>
 	
+	<!-- join; ReviewMember -->
+	<select id="selectId" parameterType="int" resultType="Member">
+		select * from member where member_=#{member_id}
+	</select>
+	
 	<!-- 한 건 가져오기 -->
 	<select id="select" parameterType="Member" resultType="Member">
 		select * from member where email=#{email} and password=#{password}

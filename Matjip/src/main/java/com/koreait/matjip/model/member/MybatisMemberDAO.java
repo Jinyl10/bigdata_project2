@@ -30,6 +30,18 @@ public class MybatisMemberDAO implements MemberDAO{
 		return result;
 	}
 
+	// join; MemberReview
+	@Override
+	public Member selectId(int member_id) throws MemberException{
+//		Member result = sessionTemplate.selectId("Member.select", member_id);
+//		if(result == null) {
+//			throw new MemberException("회원 정보가 올바르지 않습니다");
+//		}
+		
+		return null;
+	}
+
+	
 	@Override
 	public void insert(Member member) throws MemberException{
 		int result = sessionTemplate.insert("Member.insert", member);
@@ -57,5 +69,6 @@ public class MybatisMemberDAO implements MemberDAO{
 		
 	}
 	
+		
 
 }

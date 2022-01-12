@@ -8,8 +8,8 @@ import lombok.Data;
 public class Review {
 	
 	private int review_id;
-	private int restrt_id;
-	private int member_id;
+	private Restrt restrt;
+	private Member member;
 	private String review_title;
 	private String review_content;
 	private String review_regdate;

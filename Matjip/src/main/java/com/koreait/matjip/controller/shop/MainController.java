@@ -35,4 +35,13 @@ public class MainController {
 		
 		return mav;
 	}
+	
+	@RequestMapping(value="/test1", method=RequestMethod.GET)
+	public ModelAndView getTest1() {
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("shop/test1");
+		
+		return mav;
+	}
+	
 }

@@ -52,4 +52,14 @@ public class MybatisReviewDAO implements ReviewDAO{
 		}
 	}
 
+	@Override
+	public List selectAllByRestrt(int restrt_id) {
+		return sessionTemplate.selectList("Review.selectAllByRestrt", restrt_id);
+	}
+
+	@Override
+	public List selectAllByMember(int member_id) {
+		return sessionTemplate.selectList("Review.selectAllByMember", member_id);
+	}
+
 }

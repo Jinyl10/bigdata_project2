@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Jjim">	<!-- config; alias -->
+	
+	<resultMap type="Jjim" id="JoinJjim">
+		<id column="jjim_id"		property="jjim_id" />	
+		<result column="jjim"		property="jjim" />
+		<association column="restrt_id"			property="restrt" 	javaType="Restrt" 	select="Restrt.select" />
+		<association column="member_id"			property="member" 	javaType="Member" 	select="Member.select" />
+	</resultMap>
+	
+	<!-- 공통쿼리 -->
+	<sql id="selectAllCommon">
+		select jjim_id, jjim,
+		member.member_id as member_id,
+		restrt.restrt_id as restrt_id, RESTRT_NM, REFINE_ROADNM_ADDR
+		from jjim, member, restrt
+		where member.member_id=jjim.member_id
+		and restrt.restrt_id=jjim.restrt_id
+	</sql>
+	
+	<!-- 내가 찜한 가게 보기 -->
+	<select id="seleceAllByMember" parameterType="int" resultMap="JoinJjim">
+		<include refid="selectAllCommon" />
+		and jjim.member_id=#{member_id}
+	</select>
+	
+	<!-- 가게에서 찜한 개수 보기.. -->
+	<select id="seleceAllByRestrt" parameterType="int" resultMap="JoinJjim">
+		<include refid="selectAllCommon" />
+		and jjim.restrt_id=#{restrt_id}
+	</select>
+	
+	<!-- 찜 등록 -->
+	<insert id="insert" parameterType="Jjim">
+		insert into jjim(jjim_id, restrt_id, member_id, jjim)
+		values(#{jjim_id}, #{restrt.restrt_id}, #{member.member_id}, #{jjim})
+	</insert>
+	
+	<!-- 찜 삭제 -->
+	<delete id="delete" parameterType="int">
+		delete from jjim where jjim_id=#{jjim}
+	</delete>	
+</mapper>
+
+

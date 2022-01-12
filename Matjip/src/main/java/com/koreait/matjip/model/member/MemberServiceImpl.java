@@ -24,6 +24,12 @@ public class MemberServiceImpl implements MemberService{
 		return memberDAO.select(member);
 	}
 
+	//join; MemberReview
+	@Override
+	public Member selectId(int member_id) {
+		return null;
+	}
+	
 	@Override
 	public void insert(Member member)  throws MemberException{
 		memberDAO.insert(member);
@@ -38,5 +44,7 @@ public class MemberServiceImpl implements MemberService{
 	public void delete(Member member)  throws MemberException{
 		memberDAO.delete(member);
 	}
+
+	
 
 }

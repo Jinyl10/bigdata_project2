@@ -39,6 +39,16 @@ public class ReviewServiceImpl implements ReviewService{
 	public void delete(int review_id) {
 		reviewDAO.delete(review_id);
 	}
+
+	@Override
+	public List selectAllByRestrt(int restrt_id) {
+		return reviewDAO.selectAllByRestrt(restrt_id);
+	}
+
+	@Override
+	public List selectAllByMember(int member_id) {
+		return reviewDAO.selectAllByMember(member_id);
+	}
 	
 	
 

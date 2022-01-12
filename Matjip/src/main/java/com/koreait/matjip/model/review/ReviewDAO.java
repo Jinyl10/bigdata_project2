@@ -12,6 +12,9 @@ public interface ReviewDAO {
 	public void update(Review review);
 	public void delete(int review_id);
 	
+	//join
+	public List selectAllByRestrt(int restrt_id);	//detailRestrt 에서 호출
+	public List selectAllByMember(int member_id);	//myPage에서 호출
 	
 
 }

@@ -121,12 +121,12 @@ pager 활성화?&부트스트랩(pagination; https://getbootstrap.com/docs/4.6/c
 
 			<tr>
 				<td><%=num--%></td>
-				<td><%=review.getRestrt_id()%></td>
+				<td><%=review.getRestrt().getRESTRT_NM() %></td>
 				<td><img src="/resources/data/<%=review.getFilename()%>"
 					width="40px"></td>
 				<td><a
 					href="/review/detailReview?review_id=<%=review.getReview_id()%>"><%=review.getReview_title()%></a></td>
-				<td><%=review.getMember_id()%></td>
+				<td><%=review.getMember().getMember_id() %></td>
 				<td><%=review.getReview_regdate()%></td>
 			</tr>
 

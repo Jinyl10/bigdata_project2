@@ -1,11 +1,13 @@
+<%@page import="com.koreait.matjip.domain.Category"%>
 <%@page import="com.koreait.matjip.util.Pager"%>
 <%@page import="com.koreait.matjip.domain.Restrt"%>
 <%@page import="java.util.List"%>
 <%@ page contentType="text/html; charset=UTF-8"%>
 
 <%
-List<Restrt> restrtList = (List) request.getAttribute("restrtList");
-//Pager pager = (Pager) request.getAttribute("pager");
+	List<Category> categoryList = (List) request.getAttribute("categoryList");
+	List<Restrt> restrtList = (List) request.getAttribute("restrtList");
+	Pager pager = (Pager) request.getAttribute("pager");
 %>
 <!DOCTYPE html>
 <html>
@@ -79,6 +81,12 @@ th, td {
 	padding: 16px;
 }
 
+.tbody{
+	height: 500px;
+	overflow-y:auto; 
+	overflow-x: hidden;
+}
+
 /* th{background-color:#eee}
  tr:hover {background-color: #eee} */
 table:hover tbody tr:hover td {
@@ -86,17 +94,6 @@ table:hover tbody tr:hover td {
 	color: black;
 }
 
-.progress-container {
-  width: 100%;
-  height: 8px;
-  background: #ccc;
-}
-
-.progress-bar {
-  height: 8px;
-  background: #04AA6D;
-  width: 0%;
-}
 </style>
 </head>
 
@@ -119,53 +116,55 @@ table:hover tbody tr:hover td {
 					<input type="text" id="mySearch" onkeyup="myFunction()"
 						placeholder="Search.." title="Type in a category">
 					<ul id="myMenu">
-						<li><a href="#">한식</a></li>
-						<li><a href="#">중식, 일식, 양식</a></li>
-						<li><a href="#">고기</a></li>
-						<li><a href="#">해산물</a></li>
+						<% for(Category category: categoryList) { %>
+							<li><a href="#"><%= category.getCategory_name() %></a></li>
+						<%} %>
 					</ul>
 				</div>
 
 				<div class="right">
 					<!-- style="background-color: #ddd;" -->
 					<h2>맛집 목록</h2>
-					<div class="progress-container">
-    					<div class="progress-bar" id="myBar"></div>
-  					</div> 
-  					<div class="contenct">
+
+  					<div>
 						<table>
 							<thead>
 								<tr>
 									<th>No</th>
-									<th>시군 아이디</th>
-									<th>카테고리 아이디</th>
+									<th>카테고리</th>
 									<th>음식점 명</th>
 									<th>주소</th>
 								</tr>
 							</thead>
 							
 							<tbody>
-								<%for(int i=0;i<restrtList.size();i++) { %>
-								
+								<% int curPos = pager.getCurPos(); %>
+								<% int num = pager.getNum(); %>
+								<% for (int i = 1; i <= pager.getPageSize(); i++) { %>
+								<% if (num < 1)
+									break; %>
+								<% Restrt restrt = restrtList.get(curPos++); %>
 								<tr>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
-									<td>test</td>
-								</tr>
-								
-	<%--						<tr>
-									<td><%=restrtList.g %></td>
-									<td><%=restrt.getSigun_id()%></td>
-									<td><%=restrt.getCategory_id()%></td>
-									<td><%=restrt.getRESTRT_NM()%></td>
+									<td><%=num-- %></td>
+									<td><%=restrt.getCategory().getCategory_name()%></td>
+									<td><a href="/restrt/detailRestrt?restrt_id=<%= restrt.getRestrt_id() %>"><%=restrt.getRESTRT_NM()%></td>
 									<td><%=restrt.getREFINE_ROADNM_ADDR()%></td>
-								</tr>	  --%>
+								</tr>	 
 								<% } %>
 							</tbody>
 						</table>
 					</div>
+					<div style="padding-top: 20px">
+					<div class="pagination" >
+							<% for (int i = pager.getFirstPage(); i <= pager.getLastPage(); i++) { %>
+							<% if (i > pager.getTotalPage())
+									break;
+							%>
+							<a class="<%if (i == pager.getCurrentPage()) {%>active<%}%>" aria-current="page" href="/review/listReview?currentPage=<%=i%>"><%=i%></a>
+							<% } %>
+						</div>
+					</div>
+					
 				</div>
 			</div>
 
@@ -174,19 +173,8 @@ table:hover tbody tr:hover td {
 	</div>
 	<!-- row -->
 	
-	<script>
-// When the user scrolls the page, execute myFunction 
-window.onscroll = function() {myFunction()};
 
-function myFunction() {
-  var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
-  var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-  var scrolled = (winScroll / height) * 100;
-  document.getElementById("myBar").style.width = scrolled + "%";
-}
-</script>
-
-	<!-- <script>
+<!-- <script>
 function myFunction() {
   var input, filter, ul, li, a, i;
   input = document.getElementById("mySearch");
